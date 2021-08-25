@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<body style="text-align: center;">
+	<h1>
+		Assignment 1
+	</h1>
+	<p>
+		Type your Content Here
+	</p>
+	<textarea id="words" oninput="countWord()"
+		rows="10" cols="60">
+	</textarea>
+	<br><br>
+
+	<p> Word Count:
+		<span id="wordCount">0</span>
+	</p>
+    <p> 
+        <!-- <span id="rword"></span> -->
+		<div id="result"> </div>
+        <br>
+	</p>
+
+
+	<script>
+		function countWord() {
+
+			var words = document.getElementById("words").value;
+			var wcount = 0;
+			var split = words.split(' ');
+			for (var i = 0; i < split.length; i++) {
+				if (split[i] != "") {
+					wcount += 1;
+				}
+            }
+        document.getElementById("wordCount").innerHTML = wcount;
+        
+        let strStripped = words.replace(/[,.!]/g, ''); // strip all punctuation from string
+
+        let word = strStripped.split(' '); // separate string into array 
+
+        let wordCounts = {};                // form object of word counts
+        word.forEach(word => {wordCounts[word] = (wordCounts[word] || 0) + 1;});
+        document.getElementById('result').innerHTML = "Words Count = " + JSON.stringify(wordCounts, null, 2);
+}
+	</script>
+</body>
+
+</html>
